@@ -1,1 +1,519 @@
-content
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+
+    <title>Memory Rewriting - Retention Is Not Enough</title>
+    <meta
+      name="description"
+      content="Website based on the paper “Memory Retention Is Not Enough to Master Memory Tasks in Reinforcement Learning” (benchmarks, results, conclusions)."
+      data-i18n-attr-content="meta_description"
+    />
+
+    <meta property="og:title" content="Memory Rewriting - Retention Is Not Enough" />
+    <meta
+      property="og:description"
+      content="Endless T-Maze and Color-Cubes benchmarks for evaluating memory rewriting in RL, plus key results."
+      data-i18n-attr-content="og_description"
+    />
+    <meta property="og:type" content="website" />
+
+    <link rel="preload" as="image" href="images/Rewriting.png" />
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="script.js"></script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#content" data-i18n="skip_to_content">Skip to content</a>
+
+    <header class="topbar" data-topbar>
+      <div class="container topbar__inner">
+        <a class="brand" href="#home" aria-label="Memory Rewriting - home" data-i18n-attr-aria-label="brand_aria">
+          <span class="brand__mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none">
+              <path
+                d="M12 2.8 3.2 7.3v9.4L12 21.2l8.8-4.5V7.3L12 2.8Z"
+                stroke="currentColor"
+                stroke-width="1.6"
+              />
+              <path
+                d="M7.2 10.2c1.5-1.2 3.2-1.8 4.8-1.8 3.3 0 4.6 2.1 4.6 4.1 0 2.5-2.2 4.4-5.1 4.4-1.6 0-3-.6-4.1-1.6"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+              />
+            </svg>
+          </span>
+          <span class="brand__text">
+            <span class="brand__title" data-i18n="brand_title">Memory Rewriting</span>
+            <span class="brand__subtitle" data-i18n="brand_subtitle">Retention is not enough</span>
+          </span>
+        </a>
+
+        <nav class="nav" aria-label="Navigation" data-i18n-attr-aria-label="nav_aria">
+          <div class="nav__links" data-nav-links>
+            <a class="nav__link" href="#about" data-i18n="nav_about">About</a>
+            <a class="nav__link" href="#benchmarks" data-i18n="nav_benchmarks">Benchmarks</a>
+            <a class="nav__link" href="#results" data-i18n="nav_results">Results</a>
+            <a class="nav__link" href="#conclusion" data-i18n="nav_conclusion">Conclusion</a>
+          </div>
+        </nav>
+
+        <div class="topbar__actions">
+          <button
+            class="icon-btn"
+            type="button"
+            data-theme-toggle
+            aria-pressed="false"
+            aria-label="Toggle theme"
+            data-i18n-attr-aria-label="theme_aria"
+          >
+            <span class="icon-btn__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none">
+                <path
+                  d="M12 17.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11Z"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                />
+                <path
+                  d="M12 2.8v2.2M12 19v2.2M21.2 12h-2.2M5 12H2.8M18.6 5.4l-1.6 1.6M7 17l-1.6 1.6M18.6 18.6 17 17M7 7 5.4 5.4"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </span>
+            <span class="icon-btn__label" data-i18n="theme">Theme</span>
+          </button>
+
+          <button
+            class="icon-btn"
+            type="button"
+            data-lang-toggle
+            aria-pressed="false"
+            aria-label="Switch language"
+            data-i18n-attr-aria-label="lang_aria"
+          >
+            <span class="icon-btn__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none">
+                <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" stroke="currentColor" stroke-width="1.6" />
+                <path d="M3.6 12h16.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                <path
+                  d="M12 3c2.6 2.6 4.1 5.7 4.1 9S14.6 18.4 12 21c-2.6-2.6-4.1-5.7-4.1-9S9.4 5.6 12 3Z"
+                  stroke="currentColor"
+                  stroke-width="1.4"
+                />
+              </svg>
+            </span>
+            <span class="icon-btn__label" data-lang-label>EN</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="content">
+      <section class="hero" id="home" aria-label="Hero">
+        <div class="hero__bg" aria-hidden="true"></div>
+        <div class="container hero__inner">
+          <div class="hero__copy">
+            <p class="kicker" data-i18n="hero_kicker">Paper / AAMAS 2026</p>
+            <h1 class="hero__title">Memory Retention Is Not Enough to Master Memory Tasks in Reinforcement Learning</h1>
+            <p class="hero__lead" data-i18n-html="hero_lead">
+              In dynamic POMDP settings, it’s not enough to store information - an agent must <span class="em">rewrite</span> memory:
+              forget outdated information and integrate new evidence.
+            </p>
+
+            <div class="hero__cta">
+              <a class="btn btn--primary" href="#abstract" data-i18n="cta_abstract">Read abstract</a>
+              <a class="btn btn--ghost" href="#benchmarks" data-i18n="cta_benchmarks">See benchmarks</a>
+            </div>
+
+            <div class="hero__meta">
+              <div class="meta">
+                <div class="meta__label" data-i18n="meta_authors_label">Authors</div>
+                <div class="meta__value">Oleg Shchendrigin · Egor Cherepanov · Alexey K. Kovalev · Aleksandr I. Panov</div>
+              </div>
+            </div>
+          </div>
+
+          <figure class="hero__figure figure-card" data-lightbox>
+            <img
+              src="images/Rewriting.png"
+              alt="Illustration: memory rewriting vs retention"
+              data-i18n-attr-alt="hero_img_alt"
+              loading="eager"
+              decoding="async"
+              width="1200"
+              height="800"
+            />
+            <figcaption data-i18n-html="hero_figcap">
+              <strong>Memory rewriting vs retention.</strong> A new cue must overwrite the old one; otherwise the agent acts incorrectly.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section" id="about">
+        <div class="container">
+          <div class="section__head">
+            <h2 data-i18n="about_title">About</h2>
+            <p data-i18n-html="about_desc">
+              The paper isolates and measures an RL agent’s ability to <em>rewrite</em> memory under partial observability - not just
+              retain it.
+            </p>
+          </div>
+
+          <div class="grid grid--3">
+            <article class="card">
+              <h3 data-i18n="about_problem_title">Problem</h3>
+              <p data-i18n-html="about_problem_desc">
+                Most benchmarks test <em>retention</em>, but real environments change - stored cues become stale and must be updated.
+              </p>
+            </article>
+            <article class="card">
+              <h3 data-i18n="about_approach_title">Approach</h3>
+              <p data-i18n-html="about_approach_desc">
+                Two task families - <strong>Endless T‑Maze</strong> and <strong>Color‑Cubes</strong> - require continual replacement of
+                outdated information.
+              </p>
+            </article>
+            <article class="card">
+              <h3 data-i18n="about_observation_title">Observation</h3>
+              <p data-i18n-html="about_observation_desc">
+                Architectures with explicit, learnable forgetting (e.g., LSTM) are more robust at rewriting and generalize better.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--soft" id="abstract">
+        <div class="container">
+          <div class="section__head">
+            <h2 data-i18n="abstract_title">Abstract</h2>
+          </div>
+
+          <article class="prose">
+            <p data-i18n="abs_p1">
+              Effective decision-making in the real world depends on memory that is both stable and adaptive: environments change over
+              time, and agents must retain relevant information over long horizons while also updating or overwriting outdated content
+              when circumstances shift.
+            </p>
+            <p data-i18n="abs_p2">
+              Existing Reinforcement Learning (RL) benchmarks and memory-augmented agents focus primarily on retention, leaving the
+              equally critical ability of memory rewriting largely unexplored.
+            </p>
+            <p data-i18n="abs_p3">
+              To address this gap, we introduce a benchmark that explicitly tests continual memory updating under partial observability,
+              and use it to compare recurrent, transformer-based, and structured memory architectures.
+            </p>
+            <p data-i18n="abs_p4">
+              Our experiments reveal that classic recurrent models demonstrate greater flexibility and robustness in memory rewriting
+              tasks than modern structured memories, which succeed only under narrow conditions, and transformer-based agents, which
+              often fail beyond trivial retention cases.
+            </p>
+            <p data-i18n="abs_p5">
+              These findings expose a fundamental limitation of current approaches and emphasize the necessity of memory mechanisms that
+              balance stable retention with adaptive updating.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="benchmarks">
+        <div class="container">
+          <div class="section__head">
+            <h2 data-i18n="bench_title">Benchmarks</h2>
+            <p data-i18n="bench_desc">
+              Two task families capture different rewriting regimes: from a minimal diagnostic setup to a stress test with selective
+              updates and uncertainty.
+            </p>
+          </div>
+
+          <div class="grid grid--2">
+            <article class="card card--media">
+              <div class="card__body">
+                <h3>Endless T‑Maze</h3>
+                <p data-i18n-html="bench_tm_desc">
+                  An infinite chain of corridors and junctions. At the start of each corridor the agent receives a new binary cue
+                  (left/right) that <strong>completely</strong> invalidates the previous one.
+                </p>
+                <ul class="list">
+                  <li data-i18n-html="bench_tm_li1"><strong>Tests:</strong> pure overwrite (no accumulation).</li>
+                  <li data-i18n-html="bench_tm_li2"><strong>Regimes:</strong> Fixed (constant length) and Uniform (random length).</li>
+                  <li data-i18n-html="bench_tm_li3"><strong>Reward:</strong> +1 correct, −1 incorrect, small penalty for delay.</li>
+                </ul>
+              </div>
+              <figure class="card__media figure-card" data-lightbox>
+                <img
+                  src="images/Endless_T_Maze.png"
+                  alt="T‑Maze vs Endless T‑Maze"
+                  data-i18n-attr-alt="tm_img_alt"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption data-i18n-html="tm_figcap">
+                  <strong>T‑Maze vs Endless T‑Maze.</strong> In Endless, the task is to continually replace the cue.
+                </figcaption>
+              </figure>
+            </article>
+
+            <article class="card card--media">
+              <div class="card__body">
+                <h3>Color‑Cubes</h3>
+                <p data-i18n="bench_cc_desc">
+                  A grid world with N uniquely colored cubes. The agent gets a target color and must find the matching cube; non-target
+                  cubes may teleport, and full state updates appear only after events.
+                </p>
+                <ul class="list">
+                  <li data-i18n-html="bench_cc_li1"><strong>Tests:</strong> selective updates and a consistent internal map.</li>
+                  <li data-i18n-html="bench_cc_li2"><strong>Teleportation:</strong> random moves break stale memory.</li>
+                  <li data-i18n-html="bench_cc_li3"><strong>Extreme:</strong> colors are hidden on updates → infer mappings.</li>
+                </ul>
+              </div>
+              <figure class="card__media figure-card" data-lightbox>
+                <img
+                  src="images/Color-Cube-newfont.png"
+                  alt="Color‑Cubes environment diagram"
+                  data-i18n-attr-alt="cc_img_alt"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption data-i18n-html="cc_figcap">
+                  <strong>Color‑Cubes.</strong> Initialization, teleportations, and a successful interaction with the target cube.
+                </figcaption>
+              </figure>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--soft" id="results">
+        <div class="container">
+          <div class="section__head">
+            <h2 data-i18n="results_title">Results</h2>
+            <p data-i18n="results_desc">The paper groups results by four research questions (RQ1–RQ4).</p>
+          </div>
+
+          <div class="grid grid--2">
+            <article class="card">
+              <h3 data-i18n="rq1_title">RQ1 - Retention (trivial cases)</h3>
+              <p data-i18n-html="rq1_p1">
+                In Endless T‑Maze with <code>n = 1</code> (classic T‑Maze), PPO‑LSTM, SHM, and FFM reach 1.00±0.00, while GTrXL behaves
+                like ~50% (MLP-level).
+              </p>
+              <p class="muted" data-i18n="rq1_p2">
+                In Trivial Color‑Cubes the picture differs: PPO‑LSTM ≈ 0.52±0.10, while FFM/GTrXL/SHM reach 1.00±0.00.
+              </p>
+            </article>
+
+            <article class="card">
+              <h3 data-i18n="rq2_title">RQ2 - Rewriting (required)</h3>
+              <p data-i18n="rq2_p1">
+                PPO‑LSTM is most robust when cues continually become obsolete. FFM and SHM succeed in predictable Fixed settings but lose
+                flexibility under Uniform. GTrXL and MLP fail to produce stable results when rewriting is critical.
+              </p>
+            </article>
+
+            <figure class="card figure-card" data-lightbox>
+              <img
+                src="images/cumulative-corridors-new.png"
+                alt="Intermediate progress of SHM and GTrXL in Endless T‑Maze"
+                data-i18n-attr-alt="cum_img_alt"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption data-i18n-html="cum_figcap">
+                <strong>Intermediate progress.</strong> Even at low success rates, some models pass a few corridors before failing.
+              </figcaption>
+            </figure>
+
+            <figure class="card figure-card" data-lightbox>
+              <img
+                src="images/n-variations-new.png"
+                alt="Baseline comparison under interpolation and extrapolation in Endless T‑Maze"
+                data-i18n-attr-alt="nv_img_alt"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption data-i18n-html="nv_figcap">
+                <strong>Generalization.</strong> Interpolation/extrapolation across corridor counts under fixed regimes.
+              </figcaption>
+            </figure>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="grid grid--2">
+            <article class="card">
+              <h3 data-i18n="rq3_title">RQ3 - Generalization</h3>
+              <p data-i18n="rq3_p1">
+                PPO‑LSTM interpolates across all lengths in non-trivial Uniform configurations and shows partially successful
+                extrapolation to longer corridors. FFM generalizes within Fixed (both interpolation and extrapolation), SHM is mostly
+                limited to interpolation; GTrXL sometimes interpolates better than SHM but is unstable.
+              </p>
+            </article>
+
+            <article class="card">
+              <h3 data-i18n="rq4_title">RQ4 - Prioritization (Color‑Cubes Medium/Extreme)</h3>
+              <p data-i18n="rq4_p1">
+                In settings where the agent must not just “forget” but re-rank and maintain an up-to-date map (especially Extreme), all
+                baselines show 0.00±0.00.
+              </p>
+              <div class="table-wrap" role="region" aria-label="Color‑Cubes results" data-i18n-attr-aria-label="tbl_aria" tabindex="0">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th data-i18n="tbl_env">Color‑Cubes</th>
+                      <th>PPO‑LSTM</th>
+                      <th>GTrXL</th>
+                      <th>SHM</th>
+                      <th>FFM</th>
+                      <th>MLP</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row" data-i18n="tbl_trivial">Trivial</th>
+                      <td class="rank rank--2">0.52±0.10</td>
+                      <td class="rank rank--1">1.00±0.00</td>
+                      <td class="rank rank--1">1.00±0.00</td>
+                      <td class="rank rank--1">1.00±0.00</td>
+                      <td>0.00±0.00</td>
+                    </tr>
+                    <tr>
+                      <th scope="row" data-i18n="tbl_medium">Medium</th>
+                      <td>0.00±0.00</td>
+                      <td>0.00±0.00</td>
+                      <td>0.00±0.00</td>
+                      <td>0.00±0.00</td>
+                      <td>0.00±0.00</td>
+                    </tr>
+                    <tr>
+                      <th scope="row" data-i18n="tbl_extreme">Extreme</th>
+                      <td>0.00±0.00</td>
+                      <td>0.00±0.00</td>
+                      <td>0.00±0.00</td>
+                      <td>0.00±0.00</td>
+                      <td>0.00±0.00</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="ablation">
+        <div class="container">
+          <div class="section__head">
+            <h2>Ablation</h2>
+            <p data-i18n="ablation_desc">
+              The paper’s hypothesis: PPO‑LSTM succeeds thanks to gating mechanisms, especially an adaptive forget gate (vs. RNN and
+              GRU).
+            </p>
+          </div>
+
+          <div class="grid grid--2">
+            <article class="card">
+              <h3 data-i18n="ablation_what_title">What was compared</h3>
+              <ul class="list">
+                <li data-i18n-html="ablation_li1"><strong>PPO‑RNN:</strong> recurrent layer without gates.</li>
+                <li data-i18n-html="ablation_li2"><strong>PPO‑GRU:</strong> simplified gates (reset/update).</li>
+                <li data-i18n-html="ablation_li3"><strong>PPO‑LSTM:</strong> dedicated gates (forget/input/output).</li>
+              </ul>
+              <p class="muted" data-i18n="ablation_note">
+                Observation: gates strongly improve rewriting success; LSTM’s advantage over GRU highlights the importance of adaptive
+                forgetting.
+              </p>
+            </article>
+
+            <figure class="card figure-card" data-lightbox>
+              <img
+                src="images/n-variations-ablation.png"
+                alt="Ablation: RNN/GRU/LSTM comparison on Endless T‑Maze"
+                data-i18n-attr-alt="abl_img_alt"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption data-i18n-html="abl_figcap">
+                <strong>Ablation.</strong> The role of gates in interpolation/extrapolation.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--soft" id="conclusion">
+        <div class="container">
+          <div class="section__head">
+            <h2 data-i18n="concl_title">Conclusion (short)</h2>
+            <p data-i18n="concl_desc">
+              Retention is necessary but not sufficient. The core challenge is controlled transformation of memory over time: forgetting,
+              rewriting, and reallocating representational capacity.
+            </p>
+          </div>
+
+          <div class="grid grid--3">
+            <article class="card">
+              <h3 data-i18n="concl_h_title">Hierarchy</h3>
+              <p data-i18n="concl_h_desc">Per the paper: PPO‑LSTM → FFM → SHM → GTrXL → MLP (retention/rewrite/generalization).</p>
+            </article>
+            <article class="card">
+              <h3 data-i18n="concl_w_title">Why</h3>
+              <p data-i18n="concl_w_desc">
+                Explicit forgetting mechanisms and their adaptivity (forget gates) correlate with rewriting competence.
+              </p>
+            </article>
+            <article class="card">
+              <h3 data-i18n="concl_n_title">Next</h3>
+              <p data-i18n="concl_n_desc">Treat memory as an active belief state, not a passive history buffer.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div class="footer__left">
+          <div class="footer__brand">Memory Rewriting</div>
+          <div class="footer__note" data-i18n-html="footer_note">
+            Built without npm: plain <code>HTML</code> / <code>CSS</code> / <code>JS</code>.
+          </div>
+        </div>
+
+        <div class="footer__right">
+          <span class="footer__sep" aria-hidden="true">·</span>
+          <a class="footer__link" href="#home" data-i18n="footer_top">Back to top</a>
+        </div>
+      </div>
+    </footer>
+
+    <div
+      class="lightbox"
+      hidden
+      aria-hidden="true"
+      role="dialog"
+      aria-label="Image viewer"
+      data-i18n-attr-aria-label="lightbox_label"
+      data-lightbox-root
+    >
+      <div class="lightbox__backdrop" data-lightbox-close></div>
+      <div class="lightbox__panel" role="document">
+        <button class="icon-btn lightbox__close" type="button" data-lightbox-close aria-label="Close" data-i18n-attr-aria-label="close">
+          <span class="icon-btn__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none">
+              <path d="M7 7l10 10M17 7 7 17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+          </span>
+        </button>
+        <img class="lightbox__img" alt="" />
+        <div class="lightbox__caption"></div>
+      </div>
+    </div>
+  </body>
+</html>
