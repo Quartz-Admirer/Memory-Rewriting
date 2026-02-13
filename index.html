@@ -8,7 +8,7 @@
     <title>Memory Rewriting - Retention Is Not Enough</title>
     <meta
       name="description"
-      content="Website based on the paper “Memory Retention Is Not Enough to Master Memory Tasks in Reinforcement Learning” (benchmarks, results, conclusions)."
+      content="Website based on the paper вЂњMemory Retention Is Not Enough to Master Memory Tasks in Reinforcement LearningвЂќ (benchmarks, results, conclusions)."
       data-i18n-attr-content="meta_description"
     />
 
@@ -121,7 +121,7 @@
             <p class="kicker" data-i18n="hero_kicker">Paper / AAMAS 2026</p>
             <h1 class="hero__title">Memory Retention Is Not Enough to Master Memory Tasks in Reinforcement Learning</h1>
             <p class="hero__lead" data-i18n-html="hero_lead">
-              In dynamic POMDP settings, it’s not enough to store information - an agent must <span class="em">rewrite</span> memory:
+              In dynamic POMDP settings, itвЂ™s not enough to store information - an agent must <span class="em">rewrite</span> memory:
               forget outdated information and integrate new evidence.
             </p>
 
@@ -133,7 +133,29 @@
             <div class="hero__meta">
               <div class="meta">
                 <div class="meta__label" data-i18n="meta_authors_label">Authors</div>
-                <div class="meta__value">Oleg Shchendrigin · Egor Cherepanov · Alexey K. Kovalev · Aleksandr I. Panov</div>
+                <div class="meta__value">Oleg Shchendrigin В· Egor Cherepanov В· Alexey K. Kovalev В· Aleksandr I. Panov</div>
+              </div>
+              <div class="meta">
+                <div class="meta__label" data-i18n="meta_links_label">Resources</div>
+                <div class="meta__links">
+                  <a
+                    class="meta__link"
+                    href="https://github.com/Quartz-Admirer/Memory-retention-is-not-enough-to-master-memory-tasks-in-RL"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-i18n="footer_code"
+                    >Code</a
+                  >
+                  <span class="meta__sep" aria-hidden="true">&middot;</span>
+                  <a
+                    class="meta__link"
+                    href="https://arxiv.org/abs/2601.15086"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-i18n="footer_paper"
+                    >Full paper</a
+                  >
+                </div>
               </div>
             </div>
           </div>
@@ -160,7 +182,7 @@
           <div class="section__head">
             <h2 data-i18n="about_title">About</h2>
             <p data-i18n-html="about_desc">
-              The paper isolates and measures an RL agent’s ability to <em>rewrite</em> memory under partial observability - not just
+              The paper isolates and measures an RL agentвЂ™s ability to <em>rewrite</em> memory under partial observability - not just
               retain it.
             </p>
           </div>
@@ -175,7 +197,7 @@
             <article class="card">
               <h3 data-i18n="about_approach_title">Approach</h3>
               <p data-i18n-html="about_approach_desc">
-                Two task families - <strong>Endless T‑Maze</strong> and <strong>Color‑Cubes</strong> - require continual replacement of
+                Two task families - <strong>Endless TвЂ‘Maze</strong> and <strong>ColorвЂ‘Cubes</strong> - require continual replacement of
                 outdated information.
               </p>
             </article>
@@ -235,7 +257,7 @@
           <div class="grid grid--2">
             <article class="card card--media">
               <div class="card__body">
-                <h3>Endless T‑Maze</h3>
+                <h3>Endless TвЂ‘Maze</h3>
                 <p data-i18n-html="bench_tm_desc">
                   An infinite chain of corridors and junctions. At the start of each corridor the agent receives a new binary cue
                   (left/right) that <strong>completely</strong> invalidates the previous one.
@@ -243,26 +265,26 @@
                 <ul class="list">
                   <li data-i18n-html="bench_tm_li1"><strong>Tests:</strong> pure overwrite (no accumulation).</li>
                   <li data-i18n-html="bench_tm_li2"><strong>Regimes:</strong> Fixed (constant length) and Uniform (random length).</li>
-                  <li data-i18n-html="bench_tm_li3"><strong>Reward:</strong> +1 correct, −1 incorrect, small penalty for delay.</li>
+                  <li data-i18n-html="bench_tm_li3"><strong>Reward:</strong> +1 correct, в€’1 incorrect, small penalty for delay.</li>
                 </ul>
               </div>
               <figure class="card__media figure-card" data-lightbox>
                 <img
                   src="images/Endless_T_Maze.png"
-                  alt="T‑Maze vs Endless T‑Maze"
+                  alt="TвЂ‘Maze vs Endless TвЂ‘Maze"
                   data-i18n-attr-alt="tm_img_alt"
                   loading="lazy"
                   decoding="async"
                 />
                 <figcaption data-i18n-html="tm_figcap">
-                  <strong>T‑Maze vs Endless T‑Maze.</strong> In Endless, the task is to continually replace the cue.
+                  <strong>TвЂ‘Maze vs Endless TвЂ‘Maze.</strong> In Endless, the task is to continually replace the cue.
                 </figcaption>
               </figure>
             </article>
 
             <article class="card card--media">
               <div class="card__body">
-                <h3>Color‑Cubes</h3>
+                <h3>ColorвЂ‘Cubes</h3>
                 <p data-i18n="bench_cc_desc">
                   A grid world with N uniquely colored cubes. The agent gets a target color and must find the matching cube; non-target
                   cubes may teleport, and full state updates appear only after events.
@@ -270,19 +292,19 @@
                 <ul class="list">
                   <li data-i18n-html="bench_cc_li1"><strong>Tests:</strong> selective updates and a consistent internal map.</li>
                   <li data-i18n-html="bench_cc_li2"><strong>Teleportation:</strong> random moves break stale memory.</li>
-                  <li data-i18n-html="bench_cc_li3"><strong>Extreme:</strong> colors are hidden on updates → infer mappings.</li>
+                  <li data-i18n-html="bench_cc_li3"><strong>Extreme:</strong> colors are hidden on updates в†’ infer mappings.</li>
                 </ul>
               </div>
               <figure class="card__media figure-card" data-lightbox>
                 <img
                   src="images/Color-Cube-newfont.png"
-                  alt="Color‑Cubes environment diagram"
+                  alt="ColorвЂ‘Cubes environment diagram"
                   data-i18n-attr-alt="cc_img_alt"
                   loading="lazy"
                   decoding="async"
                 />
                 <figcaption data-i18n-html="cc_figcap">
-                  <strong>Color‑Cubes.</strong> Initialization, teleportations, and a successful interaction with the target cube.
+                  <strong>ColorвЂ‘Cubes.</strong> Initialization, teleportations, and a successful interaction with the target cube.
                 </figcaption>
               </figure>
             </article>
@@ -294,25 +316,25 @@
         <div class="container">
           <div class="section__head">
             <h2 data-i18n="results_title">Results</h2>
-            <p data-i18n="results_desc">The paper groups results by four research questions (RQ1–RQ4).</p>
+            <p data-i18n="results_desc">The paper groups results by four research questions (RQ1вЂ“RQ4).</p>
           </div>
 
           <div class="grid grid--2">
             <article class="card">
               <h3 data-i18n="rq1_title">RQ1 - Retention (trivial cases)</h3>
               <p data-i18n-html="rq1_p1">
-                In Endless T‑Maze with <code>n = 1</code> (classic T‑Maze), PPO‑LSTM, SHM, and FFM reach 1.00±0.00, while GTrXL behaves
+                In Endless TвЂ‘Maze with <code>n = 1</code> (classic TвЂ‘Maze), PPOвЂ‘LSTM, SHM, and FFM reach 1.00В±0.00, while GTrXL behaves
                 like ~50% (MLP-level).
               </p>
               <p class="muted" data-i18n="rq1_p2">
-                In Trivial Color‑Cubes the picture differs: PPO‑LSTM ≈ 0.52±0.10, while FFM/GTrXL/SHM reach 1.00±0.00.
+                In Trivial ColorвЂ‘Cubes the picture differs: PPOвЂ‘LSTM в‰€ 0.52В±0.10, while FFM/GTrXL/SHM reach 1.00В±0.00.
               </p>
             </article>
 
             <article class="card">
               <h3 data-i18n="rq2_title">RQ2 - Rewriting (required)</h3>
               <p data-i18n="rq2_p1">
-                PPO‑LSTM is most robust when cues continually become obsolete. FFM and SHM succeed in predictable Fixed settings but lose
+                PPOвЂ‘LSTM is most robust when cues continually become obsolete. FFM and SHM succeed in predictable Fixed settings but lose
                 flexibility under Uniform. GTrXL and MLP fail to produce stable results when rewriting is critical.
               </p>
             </article>
@@ -320,7 +342,7 @@
             <figure class="card figure-card" data-lightbox>
               <img
                 src="images/cumulative-corridors-new.png"
-                alt="Intermediate progress of SHM and GTrXL in Endless T‑Maze"
+                alt="Intermediate progress of SHM and GTrXL in Endless TвЂ‘Maze"
                 data-i18n-attr-alt="cum_img_alt"
                 loading="lazy"
                 decoding="async"
@@ -333,7 +355,7 @@
             <figure class="card figure-card" data-lightbox>
               <img
                 src="images/n-variations-new.png"
-                alt="Baseline comparison under interpolation and extrapolation in Endless T‑Maze"
+                alt="Baseline comparison under interpolation and extrapolation in Endless TвЂ‘Maze"
                 data-i18n-attr-alt="nv_img_alt"
                 loading="lazy"
                 decoding="async"
@@ -350,24 +372,24 @@
             <article class="card">
               <h3 data-i18n="rq3_title">RQ3 - Generalization</h3>
               <p data-i18n="rq3_p1">
-                PPO‑LSTM interpolates across all lengths in non-trivial Uniform configurations and shows partially successful
+                PPOвЂ‘LSTM interpolates across all lengths in non-trivial Uniform configurations and shows partially successful
                 extrapolation to longer corridors. FFM generalizes within Fixed (both interpolation and extrapolation), SHM is mostly
                 limited to interpolation; GTrXL sometimes interpolates better than SHM but is unstable.
               </p>
             </article>
 
             <article class="card">
-              <h3 data-i18n="rq4_title">RQ4 - Prioritization (Color‑Cubes Medium/Extreme)</h3>
+              <h3 data-i18n="rq4_title">RQ4 - Prioritization (ColorвЂ‘Cubes Medium/Extreme)</h3>
               <p data-i18n="rq4_p1">
-                In settings where the agent must not just “forget” but re-rank and maintain an up-to-date map (especially Extreme), all
-                baselines show 0.00±0.00.
+                In settings where the agent must not just вЂњforgetвЂќ but re-rank and maintain an up-to-date map (especially Extreme), all
+                baselines show 0.00В±0.00.
               </p>
-              <div class="table-wrap" role="region" aria-label="Color‑Cubes results" data-i18n-attr-aria-label="tbl_aria" tabindex="0">
+              <div class="table-wrap" role="region" aria-label="ColorвЂ‘Cubes results" data-i18n-attr-aria-label="tbl_aria" tabindex="0">
                 <table class="table">
                   <thead>
                     <tr>
-                      <th data-i18n="tbl_env">Color‑Cubes</th>
-                      <th>PPO‑LSTM</th>
+                      <th data-i18n="tbl_env">ColorвЂ‘Cubes</th>
+                      <th>PPOвЂ‘LSTM</th>
                       <th>GTrXL</th>
                       <th>SHM</th>
                       <th>FFM</th>
@@ -377,27 +399,27 @@
                   <tbody>
                     <tr>
                       <th scope="row" data-i18n="tbl_trivial">Trivial</th>
-                      <td class="rank rank--2">0.52±0.10</td>
-                      <td class="rank rank--1">1.00±0.00</td>
-                      <td class="rank rank--1">1.00±0.00</td>
-                      <td class="rank rank--1">1.00±0.00</td>
-                      <td>0.00±0.00</td>
+                      <td class="rank rank--2">0.52В±0.10</td>
+                      <td class="rank rank--1">1.00В±0.00</td>
+                      <td class="rank rank--1">1.00В±0.00</td>
+                      <td class="rank rank--1">1.00В±0.00</td>
+                      <td>0.00В±0.00</td>
                     </tr>
                     <tr>
                       <th scope="row" data-i18n="tbl_medium">Medium</th>
-                      <td>0.00±0.00</td>
-                      <td>0.00±0.00</td>
-                      <td>0.00±0.00</td>
-                      <td>0.00±0.00</td>
-                      <td>0.00±0.00</td>
+                      <td>0.00В±0.00</td>
+                      <td>0.00В±0.00</td>
+                      <td>0.00В±0.00</td>
+                      <td>0.00В±0.00</td>
+                      <td>0.00В±0.00</td>
                     </tr>
                     <tr>
                       <th scope="row" data-i18n="tbl_extreme">Extreme</th>
-                      <td>0.00±0.00</td>
-                      <td>0.00±0.00</td>
-                      <td>0.00±0.00</td>
-                      <td>0.00±0.00</td>
-                      <td>0.00±0.00</td>
+                      <td>0.00В±0.00</td>
+                      <td>0.00В±0.00</td>
+                      <td>0.00В±0.00</td>
+                      <td>0.00В±0.00</td>
+                      <td>0.00В±0.00</td>
                     </tr>
                   </tbody>
                 </table>
@@ -412,7 +434,7 @@
           <div class="section__head">
             <h2>Ablation</h2>
             <p data-i18n="ablation_desc">
-              The paper’s hypothesis: PPO‑LSTM succeeds thanks to gating mechanisms, especially an adaptive forget gate (vs. RNN and
+              The paperвЂ™s hypothesis: PPOвЂ‘LSTM succeeds thanks to gating mechanisms, especially an adaptive forget gate (vs. RNN and
               GRU).
             </p>
           </div>
@@ -421,12 +443,12 @@
             <article class="card">
               <h3 data-i18n="ablation_what_title">What was compared</h3>
               <ul class="list">
-                <li data-i18n-html="ablation_li1"><strong>PPO‑RNN:</strong> recurrent layer without gates.</li>
-                <li data-i18n-html="ablation_li2"><strong>PPO‑GRU:</strong> simplified gates (reset/update).</li>
-                <li data-i18n-html="ablation_li3"><strong>PPO‑LSTM:</strong> dedicated gates (forget/input/output).</li>
+                <li data-i18n-html="ablation_li1"><strong>PPOвЂ‘RNN:</strong> recurrent layer without gates.</li>
+                <li data-i18n-html="ablation_li2"><strong>PPOвЂ‘GRU:</strong> simplified gates (reset/update).</li>
+                <li data-i18n-html="ablation_li3"><strong>PPOвЂ‘LSTM:</strong> dedicated gates (forget/input/output).</li>
               </ul>
               <p class="muted" data-i18n="ablation_note">
-                Observation: gates strongly improve rewriting success; LSTM’s advantage over GRU highlights the importance of adaptive
+                Observation: gates strongly improve rewriting success; LSTMвЂ™s advantage over GRU highlights the importance of adaptive
                 forgetting.
               </p>
             </article>
@@ -434,7 +456,7 @@
             <figure class="card figure-card" data-lightbox>
               <img
                 src="images/n-variations-ablation.png"
-                alt="Ablation: RNN/GRU/LSTM comparison on Endless T‑Maze"
+                alt="Ablation: RNN/GRU/LSTM comparison on Endless TвЂ‘Maze"
                 data-i18n-attr-alt="abl_img_alt"
                 loading="lazy"
                 decoding="async"
@@ -460,7 +482,7 @@
           <div class="grid grid--3">
             <article class="card">
               <h3 data-i18n="concl_h_title">Hierarchy</h3>
-              <p data-i18n="concl_h_desc">Per the paper: PPO‑LSTM → FFM → SHM → GTrXL → MLP (retention/rewrite/generalization).</p>
+              <p data-i18n="concl_h_desc">Per the paper: PPOвЂ‘LSTM в†’ FFM в†’ SHM в†’ GTrXL в†’ MLP (retention/rewrite/generalization).</p>
             </article>
             <article class="card">
               <h3 data-i18n="concl_w_title">Why</h3>
@@ -481,13 +503,27 @@
       <div class="container footer__inner">
         <div class="footer__left">
           <div class="footer__brand">Memory Rewriting</div>
-          <div class="footer__note" data-i18n-html="footer_note">
-            Built without npm: plain <code>HTML</code> / <code>CSS</code> / <code>JS</code>.
-          </div>
         </div>
 
         <div class="footer__right">
-          <span class="footer__sep" aria-hidden="true">·</span>
+          <a
+            class="footer__link"
+            href="https://github.com/Quartz-Admirer/Memory-retention-is-not-enough-to-master-memory-tasks-in-RL"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-i18n="footer_code"
+            >Code</a
+          >
+          <span class="footer__sep" aria-hidden="true">&middot;</span>
+          <a
+            class="footer__link"
+            href="https://arxiv.org/abs/2601.15086"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-i18n="footer_paper"
+            >Full paper</a
+          >
+          <span class="footer__sep" aria-hidden="true">&middot;</span>
           <a class="footer__link" href="#home" data-i18n="footer_top">Back to top</a>
         </div>
       </div>
