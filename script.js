@@ -299,7 +299,6 @@
     if (stored === "light" || stored === "dark") return stored;
     return window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
   }
-
   function setTheme(theme) {
     root.dataset.theme = theme;
     localStorage.setItem("theme", theme);
@@ -394,4 +393,5 @@
 
   document.querySelectorAll("[data-lightbox-close]").forEach((el) => el.addEventListener("click", closeLightbox));
 })();
+
 
